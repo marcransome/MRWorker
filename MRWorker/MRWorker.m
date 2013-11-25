@@ -24,7 +24,29 @@
 //
 
 #import "MRWorker.h"
+#import "MRWorkerOperation.h"
+
+@interface MRWorker ()
+{
+    NSOperationQueue *backgroundQueue;
+}
+
+@end
 
 @implementation MRWorker
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        backgroundQueue = [[NSOperationQueue alloc] init];
+    }
+    
+    return self;
+}
+
+- (void)performOperation:(MRWorkerOperation *)operation
+{
+    [backgroundQueue addOperation:operation];
+}
 
 @end

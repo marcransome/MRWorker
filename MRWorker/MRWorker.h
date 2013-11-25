@@ -25,6 +25,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class MRWorkerOperation;
+
 @interface MRWorker : NSObject
+
+- (void)performOperation:(MRWorkerOperation *)operation;
 
 @end
