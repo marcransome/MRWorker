@@ -25,6 +25,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MRWorkerTask : NSObject
+@protocol MRWorkerOperationDelegate;
+
+@interface MRWorkerOperation : NSOperation
+
+- (instancetype) initWithString:(NSString *)string usingBlock:(void (^)(NSString *output))outputBlock;
+
++ (instancetype)workerOperationWithString:(NSString *)string usingBlock:(void (^)(NSString *output))outputBlock;
 
 @end
