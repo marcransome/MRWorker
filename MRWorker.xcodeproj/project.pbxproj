@@ -18,8 +18,8 @@
 		190BF7F11843DC9900E133F6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190BF7D01843DC9900E133F6 /* Cocoa.framework */; };
 		190BF7F91843DC9900E133F6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 190BF7F71843DC9900E133F6 /* InfoPlist.strings */; };
 		190BF7FB1843DC9900E133F6 /* MRWorkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF7FA1843DC9900E133F6 /* MRWorkerTests.m */; };
-		190BF8061843DD4700E133F6 /* MRWorkerTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8051843DD4700E133F6 /* MRWorkerTask.m */; };
-		190BF8071843DD4700E133F6 /* MRWorkerTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8051843DD4700E133F6 /* MRWorkerTask.m */; };
+		190BF8061843DD4700E133F6 /* MRWorkerOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8051843DD4700E133F6 /* MRWorkerOperation.m */; };
+		190BF8071843DD4700E133F6 /* MRWorkerOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8051843DD4700E133F6 /* MRWorkerOperation.m */; };
 		190BF80A1843DF1200E133F6 /* MRWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8091843DF1200E133F6 /* MRWorker.m */; };
 		190BF80B1843DF1200E133F6 /* MRWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8091843DF1200E133F6 /* MRWorker.m */; };
 /* End PBXBuildFile section */
@@ -54,8 +54,8 @@
 		190BF7F61843DC9900E133F6 /* MRWorkerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MRWorkerTests-Info.plist"; sourceTree = "<group>"; };
 		190BF7F81843DC9900E133F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		190BF7FA1843DC9900E133F6 /* MRWorkerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MRWorkerTests.m; sourceTree = "<group>"; };
-		190BF8041843DD4700E133F6 /* MRWorkerTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRWorkerTask.h; sourceTree = "<group>"; };
-		190BF8051843DD4700E133F6 /* MRWorkerTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRWorkerTask.m; sourceTree = "<group>"; };
+		190BF8041843DD4700E133F6 /* MRWorkerOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRWorkerOperation.h; sourceTree = "<group>"; };
+		190BF8051843DD4700E133F6 /* MRWorkerOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRWorkerOperation.m; sourceTree = "<group>"; };
 		190BF8081843DF1200E133F6 /* MRWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRWorker.h; sourceTree = "<group>"; };
 		190BF8091843DF1200E133F6 /* MRWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRWorker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,8 +127,8 @@
 				190BF7E31843DC9900E133F6 /* MRAppDelegate.m */,
 				190BF8081843DF1200E133F6 /* MRWorker.h */,
 				190BF8091843DF1200E133F6 /* MRWorker.m */,
-				190BF8041843DD4700E133F6 /* MRWorkerTask.h */,
-				190BF8051843DD4700E133F6 /* MRWorkerTask.m */,
+				190BF8041843DD4700E133F6 /* MRWorkerOperation.h */,
+				190BF8051843DD4700E133F6 /* MRWorkerOperation.m */,
 				190BF7E51843DC9900E133F6 /* MainMenu.xib */,
 				190BF7E81843DC9900E133F6 /* Images.xcassets */,
 				190BF7D71843DC9900E133F6 /* Supporting Files */,
@@ -267,7 +267,7 @@
 				190BF7E41843DC9900E133F6 /* MRAppDelegate.m in Sources */,
 				190BF7DD1843DC9900E133F6 /* main.m in Sources */,
 				190BF80A1843DF1200E133F6 /* MRWorker.m in Sources */,
-				190BF8061843DD4700E133F6 /* MRWorkerTask.m in Sources */,
+				190BF8061843DD4700E133F6 /* MRWorkerOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +277,7 @@
 			files = (
 				190BF80B1843DF1200E133F6 /* MRWorker.m in Sources */,
 				190BF7FB1843DC9900E133F6 /* MRWorkerTests.m in Sources */,
-				190BF8071843DD4700E133F6 /* MRWorkerTask.m in Sources */,
+				190BF8071843DD4700E133F6 /* MRWorkerOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +480,7 @@
 				190BF8001843DC9900E133F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		190BF8011843DC9900E133F6 /* Build configuration list for PBXNativeTarget "MRWorkerTests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +489,7 @@
 				190BF8031843DC9900E133F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
