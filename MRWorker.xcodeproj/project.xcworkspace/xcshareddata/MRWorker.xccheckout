@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5B50710D-7B9D-4214-8D7F-F25913B5694B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MRWorker</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8AC066E8-55E1-4417-A27E-FC579FA6C10B</key>
+		<string>ssh://github.com/marcransome/MRWorker.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MRWorker.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8AC066E8-55E1-4417-A27E-FC579FA6C10B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/marcransome/MRWorker.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8AC066E8-55E1-4417-A27E-FC579FA6C10B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8AC066E8-55E1-4417-A27E-FC579FA6C10B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MRWorker</string>
+		</dict>
+	</array>
+</dict>
+</plist>
