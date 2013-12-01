@@ -31,7 +31,8 @@
     BOOL _executing;
     BOOL _finished;
     BOOL _waitingForTaskToExit;
-    void (^callback)(NSString *output);
+    void (^outputCallback)(NSString *);
+    void (^completionCallback)(int);
 }
 
 @end
@@ -47,19 +48,20 @@
     return self;
 }
 
-- (instancetype) initWithString:(NSString *)string usingBlock:(void (^)(NSString *output))outputBlock
+- (instancetype) initWithString:(NSString *)string outputBlock:(void (^)(NSString *output))outputBlock completionBlock:(void (^)(int terminationStatus))completionBlock
 {
     if (self = [super init]) {
         _task = [[NSTask alloc] init];
-        callback = [outputBlock copy];
+        outputCallback = outputBlock;
+        completionCallback = completionBlock;
     }
     
     return self;
 }
 
-+ (instancetype)workerOperationWithString:(NSString *)string usingBlock:(void (^)(NSString *output))outputBlock
++ (instancetype)workerOperationWithString:(NSString *)string outputBlock:(void (^)(NSString *output))outputBlock completionBlock:(void (^)(int terminationStatus))completionBlock
 {
-    return [[self alloc] initWithString:string usingBlock:outputBlock];
+    return [[self alloc] initWithString:string outputBlock:outputBlock completionBlock:completionBlock];
 }
 
 - (void)start
@@ -85,7 +87,7 @@
         NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         if (![output isEqualToString:@"\n"]) {
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                callback(output);
+                outputCallback(output);
             }];
         }
     }];
@@ -135,6 +137,10 @@
 
 - (void)taskExited:(NSNotification *)notification
 {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        completionCallback([_task terminationStatus]);
+    }];
+    
     // stop reading and cleanup file handle's structures
     [[[_task standardOutput] fileHandleForReading] setReadabilityHandler:nil];
     

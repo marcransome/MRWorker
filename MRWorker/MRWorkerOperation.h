@@ -29,8 +29,8 @@
 
 @interface MRWorkerOperation : NSOperation
 
-- (instancetype) initWithString:(NSString *)string usingBlock:(void (^)(NSString *output))outputBlock;
+- (instancetype) initWithString:(NSString *)string outputBlock:(void (^)(NSString *output))outputBlock completionBlock:(void (^)(int terminationStatus))completionBlock;
 
-+ (instancetype)workerOperationWithString:(NSString *)string usingBlock:(void (^)(NSString *output))outputBlock;
++ (instancetype)workerOperationWithString:(NSString *)string outputBlock:(void (^)(NSString *output))outputBlock completionBlock:(void (^)(int terminationStatus))completionBlock;
 
 @end
