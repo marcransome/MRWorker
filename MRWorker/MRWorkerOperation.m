@@ -48,10 +48,14 @@
     return self;
 }
 
-- (instancetype) initWithString:(NSString *)string outputBlock:(void (^)(NSString *output))outputBlock completionBlock:(void (^)(int terminationStatus))completionBlock
+- (instancetype) initWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments outputBlock:(void (^)(NSString *output))outputBlock completionBlock:(void (^)(int terminationStatus))completionBlock
 {
     if (self = [super init]) {
         _task = [[NSTask alloc] init];
+        [_task setLaunchPath:launchPath];
+        if (arguments) {
+            [_task setArguments:arguments];
+        }
         outputCallback = outputBlock;
         completionCallback = completionBlock;
     }
@@ -59,9 +63,9 @@
     return self;
 }
 
-+ (instancetype)workerOperationWithString:(NSString *)string outputBlock:(void (^)(NSString *output))outputBlock completionBlock:(void (^)(int terminationStatus))completionBlock
++ (instancetype)workerOperationWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments outputBlock:(void (^)(NSString *output))outputBlock completionBlock:(void (^)(int terminationStatus))completionBlock
 {
-    return [[self alloc] initWithString:string outputBlock:outputBlock completionBlock:completionBlock];
+    return [[self alloc] initWithLaunchPath:launchPath arguments:arguments outputBlock:outputBlock completionBlock:completionBlock];
 }
 
 - (void)start
@@ -74,8 +78,7 @@
     [self changeExecutingState:YES];
     
     // configure and launch task instance
-    [_task setLaunchPath:@"/bin/ls"];
-    [_task setArguments:@[@""]];
+//    [_task setEnvironment:@{@"TERM":@"xterm"}];
     [_task setStandardOutput:[NSPipe pipe]];
     
     // register for task termination notification
