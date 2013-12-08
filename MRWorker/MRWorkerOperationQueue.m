@@ -28,7 +28,7 @@
 
 @interface MRWorkerOperationQueue ()
 {
-    NSOperationQueue *backgroundQueue;
+    NSOperationQueue *_backgroundQueue;
 }
 
 @end
@@ -52,7 +52,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        backgroundQueue = [[NSOperationQueue alloc] init];
+        _backgroundQueue = [[NSOperationQueue alloc] init];
     }
     
     return self;
@@ -60,7 +60,7 @@
 
 - (void)addOperation:(MRWorkerOperation *)operation
 {
-    [backgroundQueue addOperation:operation];
+    [_backgroundQueue addOperation:operation];
 }
 
 @end
