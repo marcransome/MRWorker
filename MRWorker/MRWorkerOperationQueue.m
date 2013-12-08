@@ -35,7 +35,7 @@
 
 @implementation MRWorkerOperationQueue
 
-+ (MRWorkerOperationQueue *)sharedQueue;
++ (MRWorkerOperationQueue *)sharedQueue
 {
     static dispatch_once_t onceToken;
     static MRWorkerOperationQueue *workerOperationQueue = nil;
