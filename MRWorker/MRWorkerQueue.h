@@ -1,5 +1,5 @@
 //
-//  MRWorker.m
+//  MRWorker.h
 //  MRWorker
 //
 //  Copyright (c) 2013 Marc Ransome <marc.ransome@fidgetbox.co.uk>
@@ -23,30 +23,12 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "MRWorker.h"
-#import "MRWorkerOperation.h"
+#import <Foundation/Foundation.h>
 
-@interface MRWorker ()
-{
-    NSOperationQueue *backgroundQueue;
-}
+@class MRWorkerOperation;
 
-@end
+@interface MRWorkerQueue : NSObject
 
-@implementation MRWorker
-
-- (instancetype)init
-{
-    if (self = [super init]) {
-        backgroundQueue = [[NSOperationQueue alloc] init];
-    }
-    
-    return self;
-}
-
-- (void)performOperation:(MRWorkerOperation *)operation
-{
-    [backgroundQueue addOperation:operation];
-}
+- (void)addOperation:(MRWorkerOperation *)operation;
 
 @end
