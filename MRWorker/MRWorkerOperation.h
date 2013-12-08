@@ -27,6 +27,18 @@
 
 @protocol MRWorkerOperationDelegate;
 
+/** The `MRWorkerOperation` class encapsulates a single task that can run
+ * another program as a subprocess, and provides a simple mechanism for
+ * monitoring and interacting with that program. Memory space is not shared
+ * between the subprocess and the process that creates it.
+ *
+ * `MRWorkerOperation` is a subclass of `NSOperation`, and for that reason
+ * `MRWorkerOperation` objects are single-shot, meaning they cannot be reused
+ * once execution completes. Typically `MRWorkerOperation` objects are executed
+ * by adding them directly to an operation queue. This can be an instance of
+ * `NSOperationQueue` or the convenience class `MRWorkerOperationQueue`.
+ *
+ */
 @interface MRWorkerOperation : NSOperation
 
 /**-----------------------------------------------------------------------------
