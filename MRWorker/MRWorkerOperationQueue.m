@@ -35,6 +35,20 @@
 
 @implementation MRWorkerOperationQueue
 
++ (instancetype)sharedQueue
+{
+    static dispatch_once_t onceToken;
+    static MRWorkerOperationQueue *workerOperationQueue = nil;
+    
+    if (!workerOperationQueue) {
+        dispatch_once(&onceToken, ^{
+            workerOperationQueue = [[self alloc] init];
+        });
+    }
+    
+    return workerOperationQueue;
+}
+
 - (instancetype)init
 {
     if (self = [super init]) {

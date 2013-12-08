@@ -29,6 +29,8 @@
 
 @interface MRWorkerOperationQueue : NSObject
 
++ (instancetype)sharedQueue;
+
 - (void)addOperation:(MRWorkerOperation *)operation;
 
 @end
