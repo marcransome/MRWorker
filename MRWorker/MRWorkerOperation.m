@@ -78,7 +78,6 @@
     [self changeExecutingState:YES];
     
     // configure and launch task instance
-//    [_task setEnvironment:@{@"TERM":@"xterm"}];
     [_task setStandardOutput:[NSPipe pipe]];
     
     // register for task termination notification
