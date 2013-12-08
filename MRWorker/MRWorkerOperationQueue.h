@@ -29,6 +29,16 @@
 
 @interface MRWorkerOperationQueue : NSObject
 
+/**-----------------------------------------------------------------------------
+ * @name Getting the Worker Operation Queue
+ * -----------------------------------------------------------------------------
+ */
+
+/** Returns the single `MRWorkerOperationQueue` instance for the application,
+ * creating it if necessary.
+ *
+ * @return The `MRWorkerOperationQueue` instance for the application.
+ */
 + (MRWorkerOperationQueue *)sharedQueue;
 
 - (void)addOperation:(MRWorkerOperation *)operation;
