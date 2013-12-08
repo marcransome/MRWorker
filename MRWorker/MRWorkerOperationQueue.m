@@ -23,17 +23,17 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "MRWorkerQueue.h"
+#import "MRWorkerOperationQueue.h"
 #import "MRWorkerOperation.h"
 
-@interface MRWorkerQueue ()
+@interface MRWorkerOperationQueue ()
 {
     NSOperationQueue *backgroundQueue;
 }
 
 @end
 
-@implementation MRWorkerQueue
+@implementation MRWorkerOperationQueue
 
 - (instancetype)init
 {

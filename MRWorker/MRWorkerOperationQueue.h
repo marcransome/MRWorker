@@ -27,7 +27,7 @@
 
 @class MRWorkerOperation;
 
-@interface MRWorkerQueue : NSObject
+@interface MRWorkerOperationQueue : NSObject
 
 - (void)addOperation:(MRWorkerOperation *)operation;
 
