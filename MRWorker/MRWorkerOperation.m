@@ -25,6 +25,14 @@
 
 #import "MRWorkerOperation.h"
 
+#ifndef __has_feature
+#define __has_feature(x) 0 // for compatibility with non-clang compilers
+#endif
+
+#if !__has_feature(objc_arc)
+#error MRWorkerOperation must be built with ARC.
+#endif
+
 @interface MRWorkerOperation ()
 {
     NSTask *_task;
