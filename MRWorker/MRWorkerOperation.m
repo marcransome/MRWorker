@@ -102,17 +102,23 @@
         }
     }];
     
-    [_task launch];
-    
-    // spin run loop periodically while operation is alive, allowing for task
-    // termination notification, and test for cancellation
-    while (!self.isFinished) {
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+    @try {
+        [_task launch];
         
-        if ([self isCancelled] && !_waitingForTaskToExit) {
-            _waitingForTaskToExit = YES;
-            [_task interrupt];
+        // spin run loop periodically while operation is alive, allowing for task
+        // termination notification delivery and testing for cancellation flag
+        while (!self.isFinished) {
+            NSLog(@".");
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+            
+            if ([self isCancelled] && !_waitingForTaskToExit) {
+                _waitingForTaskToExit = YES;
+                [_task interrupt];
+            }
         }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"MRBrewWorker: An internal exception was raised (%@: %@)",[exception name], exception);
     }
 }
 
