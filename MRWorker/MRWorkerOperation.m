@@ -118,7 +118,7 @@
         }
     }
     @catch (NSException *exception) {
-        NSLog(@"MRBrewWorker: An internal exception was raised (%@: %@)",[exception name], exception);
+        NSLog(@"MRWorkerOperation: An internal exception was raised (%@: %@)",[exception name], exception);
     }
 }
 
