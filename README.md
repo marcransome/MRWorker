@@ -12,9 +12,12 @@ MRWorkerOperation *operation = [MRWorkerOperation workerOperationWithLaunchPath:
     // respond to program termination
     ...
 }
-    
+
 [[MRWorkerOperationQueue sharedQueue] addOperation:operation];
 ```
+
+## Contributions
+If you would like to contribute to the project, [fork the repository](https://help.github.com/articles/fork-a-repo), make your code changes, then submit a [pull request](https://help.github.com/articles/using-pull-requests) with a brief description of your feature or bug fix.
 
 ## License
 `MRWorker` is provided under the terms of the [MIT License](http://opensource.org/licenses/mit-license.php).
