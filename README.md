@@ -1,11 +1,15 @@
 ## MRWorker
 
+`MRWorker` is a tiny Objective-C library intended to make interaction with command-line programs effortless.
+
 A simple example:
 
 ```objc
 MRWorkerOperation *operation = [MRWorkerOperation workerOperationWithLaunchPath:@"/bin/ls" arguments:@[@"-al", @"/"] outputBlock:^(NSString *output) {
+    // respond to program output
     ...
 } completionBlock:^(int terminationStatus) {
+    // respond to program termination
     ...
 }
     
