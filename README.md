@@ -16,6 +16,8 @@ MRWorkerOperation *operation = [MRWorkerOperation workerOperationWithLaunchPath:
 [[MRWorkerOperationQueue sharedQueue] addOperation:operation];
 ```
 
+See [CocoaDocs](http://cocoadocs.org/docsets/MRWorker/) for additional documentation.
+
 ## Contributions
 If you would like to contribute to the project, [fork the repository](https://help.github.com/articles/fork-a-repo), make your code changes, then submit a [pull request](https://help.github.com/articles/using-pull-requests) with a brief description of your feature or bug fix.
 
