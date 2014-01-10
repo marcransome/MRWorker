@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name          = "MRWorker"
   s.version       = "0.1.0"
-  s.summary       = ""
+  s.summary       = "Tiny Objective-C library for command-line program interaction."
   s.homepage      = "https://github.com/marcransome/MRWorker"
   s.license       = { :type => 'MIT', :file => 'LICENSE' }
   s.author        = { "Marc Ransome" => "marc.ransome@fidgetbox.co.uk" }
