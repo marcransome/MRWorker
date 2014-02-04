@@ -25,8 +25,6 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol MRWorkerOperationDelegate;
-
 typedef void (^MRWorkerOperationOutputBlock)(NSString *output);
 typedef void (^MRWorkerOperationCompletionBlock)(int terminationStatus);
 
