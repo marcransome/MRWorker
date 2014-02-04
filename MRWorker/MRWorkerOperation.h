@@ -27,6 +27,9 @@
 
 @protocol MRWorkerOperationDelegate;
 
+typedef void (^MRWorkerOperationOutputBlock)(NSString *output);
+typedef void (^MRWorkerOperationCompletionBlock)(int terminationStatus);
+
 /** The `MRWorkerOperation` class encapsulates a single task that can run
  * another program as a subprocess, and provides a simple mechanism for
  * monitoring and interacting with that program. Memory space is not shared
@@ -65,7 +68,7 @@
  *   - *terminationStatus* - The exit status returned by the executable.
  * @return An initialised worker operation object.
  */
-- (instancetype) initWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments outputBlock:(void (^)(NSString *output))outputBlock completionBlock:(void (^)(int terminationStatus))completionBlock;
+- (instancetype) initWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments outputBlock:(MRWorkerOperationOutputBlock)outputBlock completionBlock:(MRWorkerOperationCompletionBlock)completionBlock;
 
 /**-----------------------------------------------------------------------------
  * @name Creating a Worker Operation
@@ -90,6 +93,6 @@
  *   - *terminationStatus* - The exit status returned by the executable.
  * @return A new worker operation object.
  */
-+ (instancetype)workerOperationWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments outputBlock:(void (^)(NSString *output))outputBlock completionBlock:(void (^)(int terminationStatus))completionBlock;
++ (instancetype)workerOperationWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments outputBlock:(MRWorkerOperationOutputBlock)outputBlock completionBlock:(MRWorkerOperationCompletionBlock)completionBlock;
 
 @end
