@@ -1,5 +1,5 @@
 //
-//  MRWorkerTask.h
+//  MRWorkerOperation.h
 //  MRWorker
 //
 //  Copyright (c) 2013 Marc Ransome <marc.ransome@fidgetbox.co.uk>
