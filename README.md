@@ -13,7 +13,7 @@ MRWorkerOperation *operation = [MRWorkerOperation workerOperationWithLaunchPath:
     ...
 }
 
-[[MRWorkerOperationQueue sharedQueue] addOperation:operation];
+[[MRWorker sharedWorker] addOperation:operation];
 ```
 
 ## Contributions
