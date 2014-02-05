@@ -20,8 +20,8 @@
 		190BF7FB1843DC9900E133F6 /* MRWorkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF7FA1843DC9900E133F6 /* MRWorkerTests.m */; };
 		190BF8061843DD4700E133F6 /* MRWorkerOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8051843DD4700E133F6 /* MRWorkerOperation.m */; };
 		190BF8071843DD4700E133F6 /* MRWorkerOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8051843DD4700E133F6 /* MRWorkerOperation.m */; };
-		190BF80A1843DF1200E133F6 /* MRWorkerOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8091843DF1200E133F6 /* MRWorkerOperationQueue.m */; };
-		190BF80B1843DF1200E133F6 /* MRWorkerOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8091843DF1200E133F6 /* MRWorkerOperationQueue.m */; };
+		190BF80A1843DF1200E133F6 /* MRWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8091843DF1200E133F6 /* MRWorker.m */; };
+		190BF80B1843DF1200E133F6 /* MRWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8091843DF1200E133F6 /* MRWorker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,8 +56,8 @@
 		190BF7FA1843DC9900E133F6 /* MRWorkerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MRWorkerTests.m; sourceTree = "<group>"; };
 		190BF8041843DD4700E133F6 /* MRWorkerOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRWorkerOperation.h; sourceTree = "<group>"; };
 		190BF8051843DD4700E133F6 /* MRWorkerOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRWorkerOperation.m; sourceTree = "<group>"; };
-		190BF8081843DF1200E133F6 /* MRWorkerOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRWorkerOperationQueue.h; sourceTree = "<group>"; };
-		190BF8091843DF1200E133F6 /* MRWorkerOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRWorkerOperationQueue.m; sourceTree = "<group>"; };
+		190BF8081843DF1200E133F6 /* MRWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRWorker.h; sourceTree = "<group>"; };
+		190BF8091843DF1200E133F6 /* MRWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRWorker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,8 +125,8 @@
 			children = (
 				190BF7E21843DC9900E133F6 /* MRAppDelegate.h */,
 				190BF7E31843DC9900E133F6 /* MRAppDelegate.m */,
-				190BF8081843DF1200E133F6 /* MRWorkerOperationQueue.h */,
-				190BF8091843DF1200E133F6 /* MRWorkerOperationQueue.m */,
+				190BF8081843DF1200E133F6 /* MRWorker.h */,
+				190BF8091843DF1200E133F6 /* MRWorker.m */,
 				190BF8041843DD4700E133F6 /* MRWorkerOperation.h */,
 				190BF8051843DD4700E133F6 /* MRWorkerOperation.m */,
 				190BF7E51843DC9900E133F6 /* MainMenu.xib */,
@@ -266,7 +266,7 @@
 			files = (
 				190BF7E41843DC9900E133F6 /* MRAppDelegate.m in Sources */,
 				190BF7DD1843DC9900E133F6 /* main.m in Sources */,
-				190BF80A1843DF1200E133F6 /* MRWorkerOperationQueue.m in Sources */,
+				190BF80A1843DF1200E133F6 /* MRWorker.m in Sources */,
 				190BF8061843DD4700E133F6 /* MRWorkerOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,7 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				190BF80B1843DF1200E133F6 /* MRWorkerOperationQueue.m in Sources */,
+				190BF80B1843DF1200E133F6 /* MRWorker.m in Sources */,
 				190BF7FB1843DC9900E133F6 /* MRWorkerTests.m in Sources */,
 				190BF8071843DD4700E133F6 /* MRWorkerOperation.m in Sources */,
 			);

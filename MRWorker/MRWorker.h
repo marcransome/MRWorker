@@ -1,5 +1,5 @@
 //
-//  MRWorkerOperationQueue.m
+//  MRWorker.h
 //  MRWorker
 //
 //  Copyright (c) 2013 Marc Ransome <marc.ransome@fidgetbox.co.uk>
@@ -23,52 +23,30 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import "MRWorkerOperationQueue.h"
-#import "MRWorkerOperation.h"
+#import <Foundation/Foundation.h>
 
-#ifndef __has_feature
-#define __has_feature(x) 0 // for compatibility with non-clang compilers
-#endif
+@class MRWorkerOperation;
 
-#if !__has_feature(objc_arc)
-#error MRWorkerOperationQueue must be built with ARC.
-#endif
 
-@interface MRWorkerOperationQueue ()
-{
-    NSOperationQueue *_backgroundQueue;
-}
+/** The `MRWorker` class encapsulates an `NSOperationQueue` object and regulates
+ * the execution of `MRWorkerOperation` objects.
+ *
+ * @return The `MRWorker` instance for the application.
+ */
+@interface MRWorker : NSObject
 
-@end
+/**-----------------------------------------------------------------------------
+ * @name Getting the Worker Operation Queue
+ * -----------------------------------------------------------------------------
+ */
 
-@implementation MRWorkerOperationQueue
+/** Returns the single `MRWorker` instance for the application, creating it if
+ * necessary.
+ *
+ * @return The `MRWorker` instance for the application.
+ */
++ (MRWorker *)sharedWorker;
 
-+ (MRWorkerOperationQueue *)sharedQueue
-{
-    static dispatch_once_t onceToken;
-    static MRWorkerOperationQueue *workerOperationQueue = nil;
-    
-    if (!workerOperationQueue) {
-        dispatch_once(&onceToken, ^{
-            workerOperationQueue = [[self alloc] init];
-        });
-    }
-    
-    return workerOperationQueue;
-}
-
-- (instancetype)init
-{
-    if (self = [super init]) {
-        _backgroundQueue = [[NSOperationQueue alloc] init];
-    }
-    
-    return self;
-}
-
-- (void)addOperation:(MRWorkerOperation *)operation
-{
-    [_backgroundQueue addOperation:operation];
-}
+- (void)addOperation:(MRWorkerOperation *)operation;
 
 @end
