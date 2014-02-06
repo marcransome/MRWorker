@@ -31,7 +31,7 @@
 #endif
 
 #if !__has_feature(objc_arc)
-#error MRWorkerOperationQueue must be built with ARC.
+#error MRWorker must be built with ARC.
 #endif
 
 @interface MRWorker ()
