@@ -36,8 +36,9 @@ typedef void (^MRWorkerOperationCompletionBlock)(int terminationStatus);
  * `MRWorkerOperation` is a subclass of `NSOperation`, and for that reason
  * `MRWorkerOperation` objects are single-shot, meaning they cannot be reused
  * once execution completes. Typically `MRWorkerOperation` objects are executed
- * by adding them directly to an operation queue. This can be an instance of
- * `NSOperationQueue` or the convenience class `MRWorkerOperationQueue`.
+ * by adding them directly to an operation queue. This can achieved using an
+ * instance of `NSOperationQueue` or by using the convenience class `MRWorker`,
+ * which encapsulates an `NSOperationQueue` object.
  *
  */
 @interface MRWorkerOperation : NSOperation
