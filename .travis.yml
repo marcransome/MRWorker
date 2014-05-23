@@ -1,2 +1,2 @@
 language: objective-c
-script: xctool -workspace MRWorker.xcworkspace -scheme 'MRWorker' -configuration Release build
+script: xctool -project MRWorker.xcodeproj -scheme 'MRWorker' -configuration Release build
