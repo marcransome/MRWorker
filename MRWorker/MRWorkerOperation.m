@@ -140,6 +140,11 @@ static const NSTimeInterval MRWorkerTaskTerminationTimeout = 5.0;
     @catch (NSException *exception) {
         NSLog(@"MRWorkerOperation: An internal exception was raised (%@: %@)",[exception name], exception);
     }
+    @finally {
+        // cleanup
+        [self changeExecutingState:NO];
+        [self changeFinishedState:YES];
+    }
 }
 
 - (BOOL)isConcurrent
@@ -179,10 +184,6 @@ static const NSTimeInterval MRWorkerTaskTerminationTimeout = 5.0;
     
     // stop reading and cleanup file handle's structures
     [[[_task standardOutput] fileHandleForReading] setReadabilityHandler:nil];
-    
-    // update operation state
-    [self changeExecutingState:NO];
-    [self changeFinishedState:YES];
 }
 
 - (void)dealloc
