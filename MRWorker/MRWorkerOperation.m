@@ -51,9 +51,9 @@ static const NSTimeInterval MRWorkerTaskTerminationTimeout = 5.0;
 {
     if (self = [super init]) {
         _task = [[NSTask alloc] init];
-        [_task setLaunchPath:launchPath];
+        [[self task] setLaunchPath:launchPath];
         if (arguments) {
-            [_task setArguments:arguments];
+            [[self task] setArguments:arguments];
         }
         outputCallback = outputBlock;
         completionCallback = completionBlock;
@@ -77,13 +77,13 @@ static const NSTimeInterval MRWorkerTaskTerminationTimeout = 5.0;
     [self changeExecutingState:YES];
     
     // configure and launch task instance
-    [_task setStandardOutput:[NSPipe pipe]];
+    [[self task] setStandardOutput:[NSPipe pipe]];
     
     // register for task termination notification
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskExited:) name:NSTaskDidTerminateNotification object:_task];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(taskExited:) name:NSTaskDidTerminateNotification object:[self task]];
     
     // read handler for asynchronous output
-    [[[_task standardOutput] fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
+    [[[[self task] standardOutput] fileHandleForReading] setReadabilityHandler:^(NSFileHandle *file) {
         NSData *data = [file availableData];
         NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         if (![output isEqualToString:@"\n"]) {
@@ -99,10 +99,10 @@ static const NSTimeInterval MRWorkerTaskTerminationTimeout = 5.0;
 - (void)main
 {
     @try {
-        [_task launch];
+        [[self task] launch];
 
         // polling loop for operation cancellation and task termination
-        while ([_task isRunning]) {
+        while ([[self task] isRunning]) {
 
             // spin run loop to allow for delivery of task termination notification
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
@@ -123,18 +123,18 @@ static const NSTimeInterval MRWorkerTaskTerminationTimeout = 5.0;
                 // the severity to the next level for subsequent attempts (SIGINT->SIGTERM->SIGKILL)
                 switch ([self taskTerminationMode]) {
                     case MRWorkerTaskTerminationModeInterrupt:
-                        NSLog(@"Attempting task termination (SIGINT): %@", [_task description]);
-                        [_task interrupt];
+                        NSLog(@"Attempting task termination (SIGINT): %@", [[self task] description]);
+                        [[self task] interrupt];
                         [self setTaskTerminationMode:MRWorkerTaskTerminationModeTerminate];
                         break;
                     case MRWorkerTaskTerminationModeTerminate:
-                        NSLog(@"Attempting task termination (SIGTERM): %@", [_task description]);
-                        [_task terminate];
+                        NSLog(@"Attempting task termination (SIGTERM): %@", [[self task] description]);
+                        [[self task] terminate];
                         [self setTaskTerminationMode:MRWorkerTaskTerminationModeKill];
                         break;
                     case MRWorkerTaskTerminationModeKill:
-                        NSLog(@"Attempting task termination (SIGKILL): %@", [_task description]);
-                        kill([_task processIdentifier], SIGKILL);
+                        NSLog(@"Attempting task termination (SIGKILL): %@", [[self task] description]);
+                        kill([[self task] processIdentifier], SIGKILL);
                         break;
                 }
             }
@@ -182,16 +182,16 @@ static const NSTimeInterval MRWorkerTaskTerminationTimeout = 5.0;
 - (void)taskExited:(NSNotification *)notification
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        completionCallback([_task terminationStatus]);
+        completionCallback([[self task] terminationStatus]);
     }];
     
     // stop reading and cleanup file handle's structures
-    [[[_task standardOutput] fileHandleForReading] setReadabilityHandler:nil];
+    [[[[self task] standardOutput] fileHandleForReading] setReadabilityHandler:nil];
 }
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSTaskDidTerminateNotification object:_task];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSTaskDidTerminateNotification object:[self task]];
 }
 
 @end
