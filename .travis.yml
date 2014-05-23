@@ -1,0 +1,1 @@
+script: xctool -workspace MRWorker.xcworkspace -scheme 'MRWorker' -configuration Release build
