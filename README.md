@@ -1,6 +1,6 @@
 ## MRWorker
 
-`MRWorker` is a tiny experimental Objective-C library intended for running command-line programs or commands and observing their output.
+`MRWorker` is a tiny experimental Objective-C library intended for running command-line programs or commands asynchronously and observing their output.
 
 A simple example:
 
