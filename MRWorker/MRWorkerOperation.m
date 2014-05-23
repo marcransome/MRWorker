@@ -24,6 +24,7 @@
 //
 
 #import "MRWorkerOperation.h"
+#import "MRWorkerOperation+Private.h"
 
 #ifndef __has_feature
 #define __has_feature(x) 0 // for compatibility with non-clang compilers
@@ -33,17 +34,7 @@
 #error MRWorkerOperation must be built with ARC.
 #endif
 
-@interface MRWorkerOperation ()
-{
-    NSTask *_task;
-    BOOL _executing;
-    BOOL _finished;
-    BOOL _waitingForTaskToExit;
-    void (^outputCallback)(NSString *);
-    void (^completionCallback)(int);
-}
-
-@end
+static const NSTimeInterval MRWorkerTaskTerminationTimeout = 5.0;
 
 @implementation MRWorkerOperation
 
@@ -102,17 +93,47 @@
         }
     }];
     
+    [self main];
+}
+
+- (void)main
+{
     @try {
         [_task launch];
-        
-        // spin run loop periodically while operation is alive, allowing for task
-        // termination notification delivery and testing for cancellation flag
-        while (!self.isFinished) {
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1]];
-            
-            if ([self isCancelled] && !_waitingForTaskToExit) {
-                _waitingForTaskToExit = YES;
-                [_task interrupt];
+
+        // polling loop for operation cancellation and task termination
+        while ([_task isRunning]) {
+
+            // spin run loop to allow for delivery of task termination notification
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
+
+            // poll for cancellation status and skip to the next iteration of
+            // the loop unless we have received a cancellation message
+            if (![self isCancelled]) continue;
+
+            // a cancellation message was received so we attempt to terminate the task,
+            // starting with a SIGINT signal and then increasing the severity of the
+            // signal in subsequent attempts if the timeout period has been reached
+            static BOOL taskSentInitialInterrupt = NO;
+            if (!taskSentInitialInterrupt || [[self taskTerminationTime] timeIntervalSinceDate:[NSDate date]] >= MRWorkerTaskTerminationTimeout) {
+                taskSentInitialInterrupt = YES;
+                [self setTaskTerminationTime:[NSDate date]];
+
+                // signal task termination using the current termination mode and increase
+                // the severity to the next level for subsequent attempts (SIGINT->SIGTERM->SIGKILL)
+                switch ([self taskTerminationMode]) {
+                    case MRWorkerTaskTerminationModeInterrupt:
+                        [_task interrupt];
+                        [self setTaskTerminationMode:MRWorkerTaskTerminationModeTerminate];
+                        break;
+                    case MRWorkerTaskTerminationModeTerminate:
+                        [_task terminate];
+                        [self setTaskTerminationMode:MRWorkerTaskTerminationModeKill];
+                        break;
+                    case MRWorkerTaskTerminationModeKill:
+                        kill([_task processIdentifier], SIGKILL);
+                        break;
+                }
             }
         }
     }
