@@ -108,7 +108,6 @@
         // spin run loop periodically while operation is alive, allowing for task
         // termination notification delivery and testing for cancellation flag
         while (!self.isFinished) {
-            NSLog(@".");
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1]];
             
             if ([self isCancelled] && !_waitingForTaskToExit) {
