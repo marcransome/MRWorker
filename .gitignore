@@ -17,7 +17,7 @@ DerivedData
 *.hmap
 
 # CocoaPods
-Pod
+Pods
 
 # AppleDoc
 doc-output/docset-installed.txt
