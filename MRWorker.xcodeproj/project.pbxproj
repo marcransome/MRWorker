@@ -22,6 +22,7 @@
 		190BF8071843DD4700E133F6 /* MRWorkerOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8051843DD4700E133F6 /* MRWorkerOperation.m */; };
 		190BF80A1843DF1200E133F6 /* MRWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8091843DF1200E133F6 /* MRWorker.m */; };
 		190BF80B1843DF1200E133F6 /* MRWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 190BF8091843DF1200E133F6 /* MRWorker.m */; };
+		733703E690064007BA1B3823 /* libPods-MRWorkerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 626682BA755240D5A495D734 /* libPods-MRWorkerTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		190BF8051843DD4700E133F6 /* MRWorkerOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRWorkerOperation.m; sourceTree = "<group>"; };
 		190BF8081843DF1200E133F6 /* MRWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRWorker.h; sourceTree = "<group>"; };
 		190BF8091843DF1200E133F6 /* MRWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRWorker.m; sourceTree = "<group>"; };
+		35B566564C184C9EB565011F /* Pods-MRWorkerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MRWorkerTests.xcconfig"; path = "Pods/Pods-MRWorkerTests.xcconfig"; sourceTree = "<group>"; };
+		626682BA755240D5A495D734 /* libPods-MRWorkerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MRWorkerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56E77BD83DECEE2FE589B8E /* MRWorkerOperation+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MRWorkerOperation+Private.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +79,7 @@
 			files = (
 				190BF7F11843DC9900E133F6 /* Cocoa.framework in Frameworks */,
 				190BF7F01843DC9900E133F6 /* XCTest.framework in Frameworks */,
+				733703E690064007BA1B3823 /* libPods-MRWorkerTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +93,7 @@
 				190BF7F41843DC9900E133F6 /* MRWorkerTests */,
 				190BF7CF1843DC9900E133F6 /* Frameworks */,
 				190BF7CE1843DC9900E133F6 /* Products */,
+				35B566564C184C9EB565011F /* Pods-MRWorkerTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +112,7 @@
 				190BF7D01843DC9900E133F6 /* Cocoa.framework */,
 				190BF7EF1843DC9900E133F6 /* XCTest.framework */,
 				190BF7D21843DC9900E133F6 /* Other Frameworks */,
+				626682BA755240D5A495D734 /* libPods-MRWorkerTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -192,9 +198,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 190BF8011843DC9900E133F6 /* Build configuration list for PBXNativeTarget "MRWorkerTests" */;
 			buildPhases = (
+				CA20144FA542456EA99A1D7E /* Check Pods Manifest.lock */,
 				190BF7EA1843DC9900E133F6 /* Sources */,
 				190BF7EB1843DC9900E133F6 /* Frameworks */,
 				190BF7EC1843DC9900E133F6 /* Resources */,
+				281573EDE8554AB1819A0B21 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -231,6 +239,8 @@
 			mainGroup = 190BF7C41843DC9900E133F6;
 			productRefGroup = 190BF7CE1843DC9900E133F6 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+			);
 			projectRoot = "";
 			targets = (
 				190BF7CC1843DC9900E133F6 /* MRWorker */,
@@ -260,6 +270,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		281573EDE8554AB1819A0B21 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-MRWorkerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA20144FA542456EA99A1D7E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		190BF7C91843DC9900E133F6 /* Sources */ = {
@@ -425,6 +468,7 @@
 		};
 		190BF8021843DC9900E133F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35B566564C184C9EB565011F /* Pods-MRWorkerTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MRWorker.app/Contents/MacOS/MRWorker";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -447,6 +491,7 @@
 		};
 		190BF8031843DC9900E133F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35B566564C184C9EB565011F /* Pods-MRWorkerTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MRWorker.app/Contents/MacOS/MRWorker";
 				COMBINE_HIDPI_IMAGES = YES;
