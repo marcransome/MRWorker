@@ -36,9 +36,8 @@ typedef NS_ENUM(NSInteger, MRWorkerTaskTerminationMode) {
 {
     BOOL _executing;
     BOOL _finished;
-    BOOL _waitingForTaskToExit;
-    void (^outputCallback)(NSString *);
-    void (^completionCallback)(int);
+    void (^_outputBlock)(NSString *);
+    void (^_completionBlock)(int);
 }
 
 @property (nonatomic, strong) NSTask *task;

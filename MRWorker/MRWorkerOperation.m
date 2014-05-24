@@ -47,7 +47,7 @@ static const NSTimeInterval MRWorkerTaskTerminationTimeout = 5.0;
     return self;
 }
 
-- (instancetype) initWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments outputBlock:(void (^)(NSString *output))outputBlock completionBlock:(void (^)(int terminationStatus))completionBlock
+- (instancetype) initWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments outputBlock:(MRWorkerOperationOutputBlock)outputBlock completionBlock:(MRWorkerOperationCompletionBlock)completionBlock
 {
     if (self = [super init]) {
         _task = [[NSTask alloc] init];
@@ -55,14 +55,14 @@ static const NSTimeInterval MRWorkerTaskTerminationTimeout = 5.0;
         if (arguments) {
             [[self task] setArguments:arguments];
         }
-        outputCallback = outputBlock;
-        completionCallback = completionBlock;
+        _outputBlock = outputBlock;
+        _completionBlock = completionBlock;
     }
     
     return self;
 }
 
-+ (instancetype)workerOperationWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments outputBlock:(void (^)(NSString *output))outputBlock completionBlock:(void (^)(int terminationStatus))completionBlock
++ (instancetype)workerOperationWithLaunchPath:(NSString *)launchPath arguments:(NSArray *)arguments outputBlock:(void (^)(NSString *output))outputBlock completionBlock:(MRWorkerOperationCompletionBlock)completionBlock
 {
     return [[self alloc] initWithLaunchPath:launchPath arguments:arguments outputBlock:outputBlock completionBlock:completionBlock];
 }
@@ -88,7 +88,7 @@ static const NSTimeInterval MRWorkerTaskTerminationTimeout = 5.0;
         NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         if (![output isEqualToString:@"\n"]) {
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                outputCallback(output);
+                _outputBlock(output);
             }];
         }
     }];
@@ -182,7 +182,7 @@ static const NSTimeInterval MRWorkerTaskTerminationTimeout = 5.0;
 - (void)taskExited:(NSNotification *)notification
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        completionCallback([[self task] terminationStatus]);
+        _completionBlock([[self task] terminationStatus]);
     }];
     
     // stop reading and cleanup file handle's structures

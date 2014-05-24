@@ -239,8 +239,6 @@
 			mainGroup = 190BF7C41843DC9900E133F6;
 			productRefGroup = 190BF7CE1843DC9900E133F6 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				190BF7CC1843DC9900E133F6 /* MRWorker */,
