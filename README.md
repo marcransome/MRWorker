@@ -1,4 +1,6 @@
-## MRWorker [![Build Status](https://travis-ci.org/marcransome/MRWorker.svg?branch=master)](https://travis-ci.org/marcransome/MRWorker)
+# MRWorker
+
+[![Build Status](http://img.shields.io/travis/marcransome/MRWorker.svg?style=flat)](https://travis-ci.org/marcransome/MRWorker) [![Version](https://img.shields.io/cocoapods/v/MRWorker.svg?style=flat)](http://cocoadocs.org/docsets/MRWorker) [![Platform](https://img.shields.io/cocoapods/p/MRWorker.svg?style=flat)](http://cocoadocs.org/docsets/MRWorker)
 
 `MRWorker` is a tiny experimental Objective-C library intended for running command-line programs asynchronously and observing their output.
 
