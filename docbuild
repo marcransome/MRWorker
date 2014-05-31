@@ -1,2 +1,2 @@
 #!/bin/bash
-appledoc --project-name MRWorker --project-company "Fidgetbox" --company-id uk.co.fidgetbox --no-repeat-first-par --output doc-output .
+appledoc --project-name MRWorker --project-company "Fidgetbox" --company-id uk.co.fidgetbox --no-repeat-first-par --ignore .m --ignore MRWorkerOperation+Private.h --output doc-output .
