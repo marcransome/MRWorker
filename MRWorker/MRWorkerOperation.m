@@ -123,17 +123,14 @@ static const NSTimeInterval MRWorkerTaskTerminationTimeout = 5.0;
                 // the severity to the next level for subsequent attempts (SIGINT->SIGTERM->SIGKILL)
                 switch ([self taskTerminationMode]) {
                     case MRWorkerTaskTerminationModeInterrupt:
-                        NSLog(@"Attempting task termination (SIGINT): %@", [[self task] description]);
                         [[self task] interrupt];
                         [self setTaskTerminationMode:MRWorkerTaskTerminationModeTerminate];
                         break;
                     case MRWorkerTaskTerminationModeTerminate:
-                        NSLog(@"Attempting task termination (SIGTERM): %@", [[self task] description]);
                         [[self task] terminate];
                         [self setTaskTerminationMode:MRWorkerTaskTerminationModeKill];
                         break;
                     case MRWorkerTaskTerminationModeKill:
-                        NSLog(@"Attempting task termination (SIGKILL): %@", [[self task] description]);
                         kill([[self task] processIdentifier], SIGKILL);
                         break;
                 }
