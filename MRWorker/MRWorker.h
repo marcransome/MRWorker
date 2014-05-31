@@ -30,8 +30,6 @@
 
 /** The `MRWorker` class encapsulates an `NSOperationQueue` object and regulates
  * the execution of `MRWorkerOperation` objects.
- *
- * @return The `MRWorker` instance for the application.
  */
 @interface MRWorker : NSObject
 
@@ -47,6 +45,18 @@
  */
 + (MRWorker *)sharedWorker;
 
+
+/**-----------------------------------------------------------------------------
+ * @name Performing Operations
+ * -----------------------------------------------------------------------------
+ */
+
+/** Performs an operation.
+ *
+ * Operations are placed in a queue and will always execute on separate threads.
+ *
+ * @param operation The operation to perform.
+ */
 - (void)addOperation:(MRWorkerOperation *)operation;
 
 @end
