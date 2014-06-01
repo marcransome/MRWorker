@@ -53,7 +53,8 @@
 
 /** Performs an operation.
  *
- * Operations are placed in a queue and will always execute on separate threads.
+ * Operations are placed in a queue and will execute concurrently in separate
+ * threads.
  *
  * @param operation The operation to perform.
  */

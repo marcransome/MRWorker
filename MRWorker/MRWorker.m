@@ -61,6 +61,7 @@
 {
     if (self = [super init]) {
         _backgroundQueue = [[NSOperationQueue alloc] init];
+        [_backgroundQueue setMaxConcurrentOperationCount:NSOperationQueueDefaultMaxConcurrentOperationCount];
     }
     
     return self;
