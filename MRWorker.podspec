@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name          = "MRWorker"
-  s.version       = "1.0.0"
+  s.version       = "1.1.0"
   s.summary       = "Tiny Objective-C library for command-line program interaction."
   s.homepage      = "https://github.com/marcransome/MRWorker"
   s.license       = { :type => 'MIT', :file => 'LICENSE' }
   s.author        = { "Marc Ransome" => "marc.ransome@fidgetbox.co.uk" }
-  s.source        = { :git => "https://github.com/marcransome/MRWorker.git", :tag => "1.0.0" }
+  s.source        = { :git => "https://github.com/marcransome/MRWorker.git", :tag => "1.1.0" }
   s.platform      = :osx, "10.7"
   s.source_files  = "MRWorker/*.{h,m}"
   s.exclude_files = "MRWorker/MRAppDelegate.{h,m}", "MRWorker/main.m"
