@@ -13,7 +13,7 @@ MRWorkerOperation *operation = [MRWorkerOperation workerOperationWithLaunchPath:
 } completionBlock:^(int terminationStatus) {
     // respond to program termination
     ...
-}
+}];
 
 [[MRWorker sharedWorker] addOperation:operation];
 ```
