@@ -7,9 +7,7 @@
 A simple example:
 
 ```objc
-MRWorkerOperation *operation = [MRWorkerOperation workerOperationWithLaunchPath:@"/bin/ls"
-                                                  arguments:@[@"-al", @"/"]
-                                                  outputBlock:^(NSString *output) {
+MRWorkerOperation *operation = [MRWorkerOperation workerOperationWithLaunchPath:@"/bin/ls" arguments:@[@"-al", @"/"] outputBlock:^(NSString *output) {
     // buffer/process program output
     ...
 } completionBlock:^(int terminationStatus) {
